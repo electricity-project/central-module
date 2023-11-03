@@ -1,0 +1,7 @@
+name: central-system
+services:
+  central-module:
+    build:
+      context: .
+    ports:
+      - 8081:8080
