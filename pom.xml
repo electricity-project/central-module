@@ -13,10 +13,13 @@
 		<module>service-core</module>
 		<module>service-infrastructure</module>
         <module>central-kafka-producer</module>
-    </modules>
+	</modules>
 
 	<properties>
 		<java.version>21</java.version>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.version>0.0.1</project.version>
 		<spring.boot.version>3.1.5</spring.boot.version>
 		<camel.version>4.1.0</camel.version>
