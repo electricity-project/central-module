@@ -1,4 +1,4 @@
-package com.electricity.project.centralmodule.domains.powerproduction.control;
+package com.electricity.project.centralmodule.domains.powerproduction.configuration;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.builder.component.ComponentsBuilderFactory;
@@ -15,7 +15,7 @@ public class KafkaDefaultConfiguration extends RouteBuilder {
 
 
     @Override
-    public void configure() throws Exception {
+    public void configure() {
         ComponentsBuilderFactory.kafka()
                 .brokers(kafkaBrokerAddress)
                 .register(getCamelContext(), KAFKA_COMPONENT_NAME);
