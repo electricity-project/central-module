@@ -5,6 +5,6 @@ services:
       context: .
     environment:
       KAFKA_BROKER_ADDRESS: kafka_container:9092
-      CALCULATION_DATABASE_APPLICATION_ADDRESS: calculation-application:8090
+      CALCULATION_DATABASE_APPLICATION_ADDRESS: http://localhost:8090
     ports:
       - "8081:8080"
