@@ -3,11 +3,9 @@ services:
   central-module:
     environment:
       KAFKA_BROKER_ADDRESS: kafka_container:9092
-      CALCULATION_DATABASE_APPLICATION_ADDRESS: http://calculation-application:8090
+      CALCULATION_DATABASE_APPLICATION_ADDRESS: http://localhost:8090
     depends_on:
       kafka:
-        condition: service_started
-      calculation-application:
         condition: service_started
 
   kafka:
@@ -32,14 +30,4 @@ services:
     ports:
       - "2181:2181"
 
-  calculation-application:
-    container_name: calculation-application
-    build:
-      dockerfile: central-kafka-producer/Dockerfile
-    ports:
-      - "8091:8090"
-    environment:
-      KAFKA_BROKER_ADDRESS: kafka_container:9092
-    depends_on:
-      - kafka
 
