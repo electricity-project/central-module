@@ -18,6 +18,7 @@ public class KafkaDefaultConfiguration extends RouteBuilder {
     public void configure() {
         ComponentsBuilderFactory.kafka()
                 .brokers(kafkaBrokerAddress)
+                .autoOffsetReset("earliest")
                 .register(getCamelContext(), KAFKA_COMPONENT_NAME);
     }
 }
