@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @Slf4j
 public class PowerProductionRoute extends RouteBuilder {
 
-    private static final String CALCULATIONS_POWER_PRODUCTION_ENDPOINT = "/calculations-access/power-production/list";
+    private static final String CALCULATIONS_POWER_PRODUCTION_ENDPOINT = "/power-production/list";
 
     @Override
     public void configure() {
@@ -33,7 +33,7 @@ public class PowerProductionRoute extends RouteBuilder {
             .marshal().json(JsonLibrary.Jackson, String.class)
             .setHeader(Exchange.HTTP_METHOD, simple("POST"))
             .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-            .log(LoggingLevel.DEBUG, log, "The body was - ${body}")
+            .log(LoggingLevel.INFO, log, "The body was - ${body}")
             .to("{{calculation.database.application.address}}" + CALCULATIONS_POWER_PRODUCTION_ENDPOINT);
     }
 }
