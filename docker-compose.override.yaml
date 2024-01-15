@@ -1,0 +1,45 @@
+name: central-system
+services:
+  central-module:
+    environment:
+      KAFKA_BROKER_ADDRESS: kafka_container:9092
+      CALCULATION_DATABASE_APPLICATION_ADDRESS: http://calculation-application:8090
+    depends_on:
+      kafka:
+        condition: service_started
+      calculation-application:
+        condition: service_started
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka_container
+    restart: no
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://:9092
+      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: zookeeper:3.8.2
+    container_name: zookeeper
+    restart: no
+    volumes:
+      - /data/zookeeper
+    ports:
+      - "2181:2181"
+
+  calculation-application:
+    container_name: calculation-application
+    build:
+      dockerfile: central-kafka-producer/Dockerfile
+    ports:
+      - "8091:8090"
+    environment:
+      KAFKA_BROKER_ADDRESS: kafka_container:9092
+    depends_on:
+      - kafka
+

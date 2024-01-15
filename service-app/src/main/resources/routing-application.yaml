@@ -1,0 +1,9 @@
+gateway:
+  routes:
+    - name: calculation-application-route
+      mappingUrl: /calculations-db-access
+      applicationUrl: http://localhost:8090
+
+    - name: mediative-module
+      mappingUrl: /mediative-module
+      applicationUrl: http://localhost:9090
