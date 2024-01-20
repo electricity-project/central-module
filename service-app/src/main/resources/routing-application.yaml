@@ -7,3 +7,7 @@ gateway:
     - name: mediative-module
       mappingUrl: /mediative-module
       applicationUrl: ${mediative.module.application.address}
+
+    - name: real-time-calculations
+      mappingUrl: /real-time-calculations
+      applicationUrl: ${real.time.calculations.address}
