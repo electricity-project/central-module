@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.immutables.value.Value;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 @Value.Immutable
@@ -31,6 +31,6 @@ public interface PowerProductionDTO {
     Long getProducedPower();
 
     @JsonProperty(value = "timestamp", required = true)
-    LocalDateTime getTimestamp();
+    ZonedDateTime getTimestamp();
 
 }

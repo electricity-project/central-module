@@ -22,6 +22,7 @@ public class PowerProductionRoute extends RouteBuilder {
     public void configure() {
         from(KafkaDefaultConfiguration.KAFKA_COMPONENT_NAME + ":power-stations")
             .unmarshal().json(JsonLibrary.Jackson, PowerProductionDTO.class)
+                .log(LoggingLevel.INFO, log, "Receive message: ${body}")
             .aggregate(constant(true), AggregationStrategies
                         .flexible(PowerProductionDTO.class)
                         .accumulateInCollection(ArrayList.class)
@@ -31,7 +32,7 @@ public class PowerProductionRoute extends RouteBuilder {
             .marshal().json(JsonLibrary.Jackson, String.class)
             .setHeader(Exchange.HTTP_METHOD, simple("POST"))
             .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-            .log(LoggingLevel.INFO, log, "The body was - ${body}")
+            .log(LoggingLevel.DEBUG, log, "Send body: ${body}")
             .to("{{calculation.database.application.address}}" + CALCULATIONS_POWER_PRODUCTION_ENDPOINT);
     }
 }
