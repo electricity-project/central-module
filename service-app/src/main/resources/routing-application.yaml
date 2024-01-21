@@ -11,3 +11,7 @@ gateway:
     - name: real-time-calculations
       mappingUrl: /real-time-calculations
       applicationUrl: ${real.time.calculations.address}
+
+    - name: prediction-module
+      mappingUrl: /prediction-module
+      applicationUrl: ${prediction.module.address}
